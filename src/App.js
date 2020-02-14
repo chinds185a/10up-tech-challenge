@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 
 // pages
+import HomePage from "./pages/Home";
 import PostPage from "./pages/Post";
 import AboutPage from "./pages/About";
 
@@ -19,6 +20,9 @@ const App = () => {
         <div>
           <Suspense fallback={<h2>loading.....</h2>}>
             <Switch>
+              <Route path="/" exact>
+                <HomePage />
+              </Route>
               <Route path="/about">
                 <AboutPage />
               </Route>
