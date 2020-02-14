@@ -1,5 +1,6 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 // pages
 import PostPage from "./pages/Post";
@@ -10,18 +11,25 @@ import "./App.css";
 
 const App = () => {
   return (
-    <Router>
-      <div>
-        <Switch>
-          <Route path="/about">
-            <AboutPage />
-          </Route>
-          <Route path="/blog/:slug">
-            <PostPage />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
+    <HelmetProvider>
+      <Helmet>
+        <title>10UP!</title>
+      </Helmet>
+      <Router>
+        <div>
+          <Suspense fallback={<h2>loading.....</h2>}>
+            <Switch>
+              <Route path="/about">
+                <AboutPage />
+              </Route>
+              <Route path="/blog/:slug">
+                <PostPage />
+              </Route>
+            </Switch>
+          </Suspense>
+        </div>
+      </Router>
+    </HelmetProvider>
   );
 };
 
