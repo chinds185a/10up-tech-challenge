@@ -1,16 +1,17 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
+import { useRouteMatch } from "react-router-dom";
+import useFetch from "fetch-suspense";
 
 // utilities
 import { createMarkup } from "../../utilities/CreateMarkup";
 
-// data fetch
-import { fetchData } from "../../Api";
-
-const resource = fetchData("https://exercise.10uplabs.com/wp-json/wp/v2/pages");
-
 const AboutPage = () => {
-  const data = resource.pageData.read();
+  const { path } = useRouteMatch();
+  const data = useFetch(
+    `https://exercise.10uplabs.com/wp-json/wp/v2/pages?slug?slug=${path}`,
+    { method: "GET" }
+  );
   const {
     slug,
     title: { rendered: pageTitle },

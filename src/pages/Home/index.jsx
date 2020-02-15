@@ -1,14 +1,13 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
+import useFetch from "fetch-suspense";
 import { Link } from "react-router-dom";
 
-// data fetch
-import { fetchData } from "../../Api";
-
-const resource = fetchData("https://exercise.10uplabs.com/wp-json/wp/v2/posts");
-
 const HomePage = () => {
-  const data = resource.pageData.read();
+  const data = useFetch("https://exercise.10uplabs.com/wp-json/wp/v2/posts", {
+    method: "GET"
+  });
+
   return (
     <>
       <Helmet>
