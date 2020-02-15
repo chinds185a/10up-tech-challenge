@@ -5,7 +5,11 @@ import { Link } from "react-router-dom";
 // utilities
 import { createMarkup } from "../../utilities/CreateMarkup";
 
-const POST_PATH = "/blog";
+// components
+import PostDate from "../PostDate";
+import PostHeadline from "../PostHeadline";
+import PostAuthor from "../PostAuthor";
+import PostExcerpt from "../PostExcerpt";
 
 const Post = ({ post }) => {
   const {
@@ -29,31 +33,12 @@ const Post = ({ post }) => {
       className="post"
     >
       <header>
-        <Link to={`${POST_PATH}/${slug}`}>
-          <h2 itemProp="headline">{postTitle}</h2>
-        </Link>
-
-        {/* <!-- publication date --> */}
-        <div className="date">
-          <strong>Publish Date</strong>:
-          <span itemProp="datePublished">
-            <time dateTime={date}>{date}</time>
-          </span>
-        </div>
-
-        <div className="author">
-          <strong>Author</strong>:
-          <a href={authorLink}>
-            <span itemProp="author">{authorName}</span>
-          </a>
-        </div>
+        <PostHeadline headline={postTitle} slug={slug} />
+        <PostDate date={date} />
+        <PostAuthor authorName={authorName} authorLink={authorLink} />
       </header>
 
-      <div
-        itemProp="articleBody"
-        className="content"
-        dangerouslySetInnerHTML={createMarkup(postExcerpt)}
-      />
+      <PostExcerpt excerpt={createMarkup(postExcerpt)} />
     </article>
   );
 };

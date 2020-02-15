@@ -1,6 +1,7 @@
 import React, { Suspense } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
+import { HOME_ROUTE, ABOUT_ROUTE, BLOG_ROUTE } from "./utilities/constants";
 
 // ui
 import Layout from "./containers/Layout";
@@ -19,13 +20,13 @@ const App = () => {
         <Layout>
           <Suspense fallback={<h2>loading.....</h2>}>
             <Switch>
-              <Route path="/" exact>
+              <Route path={HOME_ROUTE} exact>
                 <HomePage />
               </Route>
-              <Route path="/about">
+              <Route path={ABOUT_ROUTE}>
                 <AboutPage />
               </Route>
-              <Route path="/blog/:slug">
+              <Route path={`${BLOG_ROUTE}/:slug`}>
                 <PostPage />
               </Route>
             </Switch>
