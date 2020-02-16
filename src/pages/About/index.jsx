@@ -13,7 +13,6 @@ const AboutPage = () => {
     { method: "GET" }
   );
   const {
-    slug,
     title: { rendered: pageTitle },
     content: { rendered: pageContent }
   } = data[0];

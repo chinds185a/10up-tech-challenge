@@ -1,6 +1,5 @@
 import React from "react";
 import useFetch from "fetch-suspense";
-import { Link } from "react-router-dom";
 
 // utilities
 import { createMarkup } from "../../utilities/CreateMarkup";

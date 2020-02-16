@@ -30,6 +30,4 @@ const PostPage = () => {
   );
 };
 
-const PostComponent = () => {};
-
 export default PostPage;

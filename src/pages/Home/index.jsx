@@ -17,11 +17,11 @@ const HomePage = () => {
       </Helmet>
       <div>
         <h1>Home Page</h1>
-        <main>
+        <div itemScope itemType="https://schema.org/Blog">
           {data.map(post => (
             <Post key={`post-${post.id}`} post={post} />
           ))}
-        </main>
+        </div>
       </div>
     </>
   );
