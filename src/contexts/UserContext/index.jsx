@@ -6,9 +6,7 @@ import { userReducer } from "../../reducers/UserReducer";
 const UserContext = createContext({});
 
 // default state
-const defaultUserState = {
-  authenticated: false
-};
+const defaultUserState = false;
 
 const UserContextProvider = ({ children }) => {
   const [userState, userDispatch] = useReducer(userReducer, defaultUserState);

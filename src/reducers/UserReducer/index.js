@@ -1,4 +1,6 @@
-import { USER_LOGIN, USER_LOGOUT } from "../../utilities/constants";
+import { USER_LOGIN, USER_LOGOUT, HOME_ROUTE } from "../../utilities/constants";
+import history from "../../utilities/histoy";
+const ls = require("local-storage");
 
 // actions
 const loginUser = data => ({
@@ -6,17 +8,24 @@ const loginUser = data => ({
   data
 });
 
+const logoutUser = () => ({
+  type: USER_LOGOUT
+});
+
 // reducer
 const userReducer = (userState, action) => {
-  const { type } = action;
+  const { data, type } = action;
 
   switch (type) {
     case USER_LOGIN:
-      // TODO: Login user
-      return userState;
+      ls.set("user", data);
+      return data;
+    case USER_LOGOUT:
+      ls.remove("user");
+      return false;
     default:
       return userState;
   }
 };
 
-export { userReducer, loginUser };
+export { userReducer, loginUser, logoutUser };
